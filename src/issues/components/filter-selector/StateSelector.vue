@@ -1,15 +1,14 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { useIssuesStore } from 'src/stores/issues-store';
 
+const issueStore = useIssuesStore();
 
-const moderl = ref(null)
 
 </script>
 
 
-
 <template>
-  <q-btn-toggle v-model="moderl" toggle-color="primary" push spread :options="[
+  <q-btn-toggle v-model="issueStore.state" toggle-color="primary" push spread :options="[
     { label: 'All', value: '' },
     { label: 'Open', value: 'open' },
     { label: 'Closed', value: 'closed' }
