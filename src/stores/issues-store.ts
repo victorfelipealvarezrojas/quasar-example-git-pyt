@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import { ref } from 'vue';
 
 export const useIssuesStore = defineStore('counter', () => {
-  const state = ref('');
+  const state = ref<string[]>([]);
   const labels = ref<string[]>([]);
 
   return {
@@ -13,7 +13,12 @@ export const useIssuesStore = defineStore('counter', () => {
     // setters
     // actions
     toggleLabel(labelName: string) {
-      throw new Error('No Implement' + labelName);
+      if (labels.value.includes(labelName)) {
+        labels.value = labels.value.filter((label) => label !== labelName);
+        return;
+      }
+
+      labels.value.push(labelName);
     },
   };
 });
