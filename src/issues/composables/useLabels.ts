@@ -20,7 +20,6 @@ const useLabels = () => {
 
   return {
     labelsQuery,
-
     // getters
     selectedLabels: computed(() => issuesStore.labels),
     // methods
