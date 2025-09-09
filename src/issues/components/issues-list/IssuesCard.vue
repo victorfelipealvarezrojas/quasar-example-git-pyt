@@ -55,7 +55,7 @@ const issue = toRef(props, "issue")
     <q-separator />
 
     <q-item-section class="q-pa-md markdown">
-      <vue-markdown  style="width: 90%;" :source="issue!.body" />
+      <vue-markdown  style="width: 90%;" :source="issue!.body ?? ''" />
     </q-item-section>
 
     <q-separator />
