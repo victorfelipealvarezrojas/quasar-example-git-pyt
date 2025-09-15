@@ -7,11 +7,10 @@ import useIssue from '../composables/useIssue';
 const route = useRoute();
 const { id} = route.params;
 
-
-const {issueQuery} = useIssue(Number(id));
+const {issueQuery, commentQuery} = useIssue(Number(id));
 const {data, isLoading} = issueQuery;
+const {data: comments, isLoading: isLoadingComments} = commentQuery;
 
-console.log(data)
 
 </script>
 
@@ -20,13 +19,18 @@ console.log(data)
 
   <LoaderSpinner v-if="isLoading" color="white" title="" />
   <IssuesCard v-else-if="data" :issue="data" />
-  <p>Issue Id: {{ id }} not found</p>
 
-  <LoaderSpinner :thickness="1" size="1rem" title="" />
 
-  <div class="column">
-    <span class="text-h3 q-mb-md" >Comments</span>
-      <IssuesCard style="margin: 0 auto; width: 90%; margin-bottom: 10px;" v-for="comment in 5" :key="comment" />
+  <LoaderSpinner v-if="isLoadingComments" :thickness="1" size="1rem" title="" />
+  <div v-else class="column">
+    <span class="text-h3 q-mb-md" >Comments {{ comments?.length }}</span>
+      <IssuesCard
+          :v-if="comments"
+          style="margin: 0 auto; width: 90%; margin-bottom: 10px;"
+          v-for="comment in comments"
+          :issue="comment"
+          :key="comment.id"
+      />
   </div>
 
 

@@ -6,6 +6,7 @@ import IssuesList from '../components/issues-list/IssuesList.vue';
 import useIssues from '../composables/useIssues';
 
 const {issuesQuery} = useIssues()
+
 const {data, isLoading} = issuesQuery
 
 </script>
